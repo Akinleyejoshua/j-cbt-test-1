@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>CBT EXAM</title>
+    <style>
+        body {
+            font-family: monospace;
+            padding: 10px;
+            text-align: center;
+        }
+
+        #question-arena {
+            background: whitesmoke;
+            padding: 2em;
+            margin: 1em;
+            box-shadow: 0px 0px 5px gray;
+            border-radius: 1em;
+            border: none;
+        }
+
+        #question {
+            padding: 1em;
+            background: white;
+            box-shadow: 0px 0px 1px gray;
+            border: none;
+            border-radius: 0.5em;
+        }
+
+        #response {
+            border-style: double;
+            background: rgb(202, 202, 202);
+            border:none;
+            padding: 10px;
+            box-shadow: 0px 0px 2px gray; 
+        }
+
+        #start {
+            border: none;
+            padding: 10px;
+            background: white;
+            box-shadow: 0px 0px 4px gray;
+            border-radius: 5px;
+            margin: 10px;
+        }
+
+        #finish {
+            border: none;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.507);
+            box-shadow: 0px 0px 4px gray;
+            border-radius: 5px;
+            margin: 10px;
+        }
+
+        #pages {
+            border: none;
+            padding: 10px;
+            background: white;
+            box-shadow: 0px 0px 5px gray;
+            border-radius: 50%;
+            margin: 10px;
+
+        }
+
+        .save {
+            border: none;
+            padding: 10px;
+            background: rgb(255, 255, 255);
+            box-shadow: 0px 0px 5px gray;
+            border-radius: 0.5em;
+            margin: 4px;
+        }
+        .submit {
+            border: none;
+            padding: 10px;
+            background: rgb(255, 255, 255);
+            box-shadow: 0px 0px 5px gray;
+            border-radius: 0.5em;
+            margin: 4px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="question-arena">
+        <div id="msg"></div><br>
+        <div id="question">Question goes here</div><br>
+        <input type="text" id="response"><br><br>
+        <input id="start" value='Start' type="button">
+        <div id="save"></div>
+        <br>
+        <div class="pages"></div>
+    </div>
+
+    <!-- <script src="functions.js"></script> -->
+    <script src="dataBase.js"></script>
+
+    <script>
+
+        const username = prompt("What is your name?");
+        const msg = document.querySelector('#msg');
+        msg.innerHTML = 'Welcome ' + username;
+
+        const response = document.querySelector('#response');
+        const saveResponse = document.querySelector('#save');
+        const display = document.querySelector('#question');
+        const validate = document.querySelector('#start');
+        const pages = document.querySelector('.pages');
+
+        function start(i) {
+            const buttons = document.createElement('button')
+            buttons.id = 'pages';
+            buttons.className = i
+            pages.appendChild(buttons);
+            buttons.innerHTML = (parseInt(i) + parseInt(1))
+        }
+        
+        function finish(){
+            validate.style.display ='none';
+            const button = document.createElement('button')
+            button.id = 'submit';
+            button.className = 'submit'
+            saveResponse.appendChild(button);
+            button.innerHTML = 'Finish'
+        }
+
+        document.addEventListener('click', function (event) {
+
+            if (event.target.value === 'Start') {
+
+                finish()
+
+                for (var i = 0; questions.length > i; i++) {
+                    display.innerHTML = `Saving is very important, Double click numbers for each page to save answers.<br>Click on the numbers to view questions.<br>Click finish after completing the questions. `
+                    start(i)
+                };
+
+            }
+            var buttons = document.querySelectorAll('button')
+
+
+            if (event.target.innerHTML === 'Save') {
+                const value = response.value
+                userResponse.push(value)
+            }
+
+            if (event.target.innerHTML === '1') {
+                display.innerHTML = questions[0];
+                buttons[1].style.border = '1px solid skyblue';
+            };
+            if (event.target.innerHTML === '2') {
+                display.innerHTML = questions[1];
+                buttons[2].style.border = '1px solid skyblue';
+                response.value = " ";
+            }
+            if (event.target.innerHTML === '3') {
+                display.innerHTML = questions[2];
+                buttons[3].style.border = '1px solid skyblue'
+                response.value = " ";
+
+            }
+            if (event.target.innerHTML === '4') {
+                display.innerHTML = questions[3];
+                buttons[4].style.border = '1px solid skyblue'
+                response.value = " ";
+
+            }
+            if (event.target.innerHTML === '5') {
+                display.innerHTML = questions[4];
+                buttons[5].style.border = '1px solid skyblue'
+                response.value = " ";
+
+            }
+            if (event.target.innerHTML === '6') {
+                display.innerHTML = questions[5];
+                buttons[6].style.border = '1px solid skyblue'
+                response.value = " ";
+
+            }
+            if (event.target.innerHTML === '7') {
+                display.innerHTML = questions[6];
+                buttons[7].style.border = '1px solid skyblue'
+                response.value = " ";
+
+            }
+            if (event.target.innerHTML === '8') {
+                display.innerHTML = questions[7];
+                buttons[8].style.border = '1px solid skyblue'
+                response.value = " ";
+
+            }
+            if (event.target.innerHTML === '9') {
+                display.innerHTML = questions[8];
+                buttons[9].style.border = '1px solid skyblue'
+                response.value = " ";
+
+            }
+            if (event.target.innerHTML === '10') {
+                display.innerHTML = questions[9];
+                buttons[10].style.border = '1px solid skyblue'
+                response.value = " ";
+
+            }
+
+
+            if (event.target.id === 'submit') {
+                display.innerHTML = 'Done, Please wait....';
+
+                function Submit() {
+                    var score = 0
+                    if (userResponse[0] == answers[0]) {
+                        score += 10
+                    }
+                    if (userResponse[1] == answers[1]) {
+                        score += 10
+                    }
+                    if (userResponse[2] == answers[2]) {
+                        score += 10
+                    }
+                    if (userResponse[3] == answers[3]) {
+                        score += 10
+                    }
+                    if (userResponse[4] == answers[4]) {
+                        score += 10
+                    }
+                    if (userResponse[5] == answers[5]) {
+                        score += 10
+                    }
+                    if (userResponse[6] == answers[6]) {
+                        score += 10
+                    }
+                    if (userResponse[7] == answers[7]) {
+                        score += 10
+                    }
+                    if (userResponse[8] == answers[8]) {
+                        score += 10
+                    }
+                    if (userResponse[9] == answers[9]) {
+                        score += 10
+                    }
+                    
+                    display.innerHTML = `You scored ${score}`
+        
+                }
+                setTimeout(Submit, 5000)
+            
+            }
+
+        })
+
+
+        document.addEventListener('dblclick', function save(event) {
+            var value = response.value;
+
+            if (event.target.innerHTML === '1'){
+                userResponse[0].push(value)
+            }
+        })
+
+
+
+    </script>
+
+</body>
+
+</html>
